@@ -1,0 +1,212 @@
+@font-face {
+    font-family: Sansation;
+    src: url("fonts/Sansation_Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Sansation-light;
+    src: url("fonts/Sansation_Light.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+.titlePane {
+    width: 20%;
+    /* float: right; */
+    /* left: 0%; */
+    right: 0;
+    left: 0;
+    margin: auto;
+    /* position: absolute; */
+    text-align: center;
+    display: inline-block;
+    background: rgba(42, 42, 42, 0.7);
+    border-radius: 5px;
+    border: 1px solid #444;
+    padding: 5px 10px;
+    color: #fff;
+    line-height: 150%;
+    font-size: small;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.controlPane {
+    /* width: 29%; */
+    float: left;
+
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 42.3%;
+    /* position: absolute; */
+    display: inline-block;
+    background: rgba(42, 42, 42, 0.7);
+    border-radius: 5px;
+    border: 1px solid #444;
+    /* padding:5px 10px; */
+    color: #fff;
+    line-height: 150%;
+    text-align: center;
+    font-size: small;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#heightSliderLabel,
+#heightValue {
+    vertical-align: top;
+}
+
+.titlePane a:link,
+.titlePane a:visited,
+.titlePane a:hover {
+    color: #fff;
+}
+
+body {
+    background-color: rgb(24, 24, 24);
+}
+.loadingIndicator {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -33px;
+    margin-left: -33px;
+    width: 66px;
+    height: 66px;
+    background: url(Source/Images/ajax-loader.gif) center no-repeat;
+}
+
+/* .cover {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+} */
+
+#title {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.nowrap {
+    /* white-space: nowrap; */
+}
+
+/* html, */
+/* body, */
+#cesiumContainer {
+    /* display: inline-block; */
+    /* float: none; */
+    width: 800px;
+    height: 600px;
+    /* makes entered on page */
+    margin: auto;
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 42.3%;
+    right: 0;
+
+    border: 6px solid black;
+    border-radius: 9px;
+    padding: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+    background: #000;
+}
+
+button.cesium-infoBox-camera {
+    display: none;
+}
+
+#3DTiles {
+    padding-top: 10px;
+}
+
+#index {
+    background-color: white;
+    color: black;
+    mix-blend-mode: screen;
+    font-weight: bolder;
+    font-size: medium;
+}
+#title {
+    font-family: Sansation;
+}
+#title_logo {
+    /* padding-right: 20px; */
+    width: 75px;
+    filter: sepia(80%) saturate(60%) brightness(150%);
+}
+
+table {
+    overflow-y: scroll;
+    height: 580px;
+    display: block;
+    width: 780px;
+    margin: 10px;
+    /* margin-top: 10px; */
+    /* display: inline-block; */
+    border: 1px solid rgb(255, 255, 255);
+    border-collapse: collapse;
+    /* padding: 10px; */
+    text-align: center;
+}
+th {
+    text-align: center;
+    border: 1px solid rgb(255, 255, 255);
+    height: 30px;
+}
+td {
+    text-decoration: none;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 9px;
+    height: 40px;
+    /* width: 100%; */
+}
+tr.selected {
+    background-color: rgb(130, 221, 25);
+}
+
+#apRows:hover {
+    background-color: rgb(74, 197, 160);
+    cursor: pointer;
+}
+
+#state_select {
+    background-color: white;
+    color: black;
+    mix-blend-mode: screen;
+    font-weight: bolder;
+    font-size: medium;
+    padding: 9px;
+    margin-bottom: 10px;
+}
+#text {
+    color: white;
+    mix-blend-mode: screen;
+    font-weight: bolder;
+    font-size: medium;
+    margin-left: 10px;
+}
+#choose {
+    border: 1px solid rgb(255, 255, 255);
+    font-weight: bolder;
+    font-size: medium;
+    background-color: transparent;
+    padding: 9px;
+    margin-bottom: 10px;
+}
+#choose:hover {
+    background-color: rgb(74, 197, 160);
+    cursor: pointer;
+}
