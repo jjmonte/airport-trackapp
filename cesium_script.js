@@ -18,6 +18,8 @@ var planeIcon = "images/plane_circle.png";
 var lastHovered = null;
 var cameraHeight = viewer.camera.positionCartographic.height;
 
+
+
 //var airportsArray = airportsArray;
 
 var distanceViewModel = {

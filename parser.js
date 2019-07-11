@@ -2,7 +2,7 @@
 
 function loadJSON() {
     var request = new XMLHttpRequest();
-    request.open("GET", "./airports_us.json", true);
+    request.open("GET", "http://localhost:5500/airports_us.json", true);
     request.send(null);
     request.onreadystatechange = function() {
         if (request.readyState === 4 && request.status === 200) {
@@ -23,6 +23,30 @@ function loadAirports(airportsArray) {
     var dom_el = document.querySelector('div[ng-controller="apCtrl"]');
     var ng_el = angular.element(dom_el).scope();
     ng_el.populateAirports(airportsArray);
+}
+
+function getAirportName(ICAO_airport) {
+  for (var i = 0; i < airportsArray.length; i++) {
+    if (airportsArray[i][12] === ICAO_airport) {
+      return airportsArray[i][3];
+    }
+  }
+};
+
+function getAirportICAO(airport_name) {
+  for (var i = 0; i < airportsArray.length; i++) {
+    if (airportsArray[i][3] === airport_name) {
+      return airportsArray[i][12];
+    }
+  }
+};
+
+function getAirportState(ICAO_airport) {
+  for (var i = 0; i < airportsArray.length; i++) {
+    if (airportsArray[i][12] === ICAO_airport) {
+      return airportsArray[i][9];
+    }
+  }
 }
 
 function JSONToArray(json) {
