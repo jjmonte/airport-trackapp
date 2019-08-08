@@ -1,0 +1,5 @@
+Implement:
+
+flight panes are labelled (departing, arriving)
+flight panes display: "Select an airport to view its flights." before clicking an airport
+- after clicking, table row displays "Loading..." until all are loaded

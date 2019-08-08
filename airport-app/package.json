@@ -1,0 +1,47 @@
+{
+  "name": "airport-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^5.2.4",
+    "bootstrap": "^4.3.1",
+    "craco-cesium": "^1.1.1",
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.10",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-datepicker": "^2.8.0",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "react-scripts": "3.0.1",
+    "react-scrollbars-custom": "^4.0.16",
+    "react-table": "^6.10.0",
+    "resium": "^1.5.0",
+    "tachyons": "^4.11.1"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cesium": "^1.59.0",
+    "json-loader": "^0.5.7"
+  }
+}

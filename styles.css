@@ -1,84 +1,165 @@
 @font-face {
-    font-family: Sansation;
-    src: url("fonts/Sansation_Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
+  font-family: Sansation;
+  src: url("fonts/Sansation_Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
-    font-family: Sansation-light;
-    src: url("fonts/Sansation_Light.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
+  font-family: Sansation-light;
+  src: url("fonts/Sansation_Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 .titlePane {
-    width: 20%;
-    /* float: right; */
-    /* left: 0%; */
-    right: 0;
-    left: 0;
-    margin: auto;
-    /* position: absolute; */
-    text-align: center;
-    display: inline-block;
-    background: rgba(42, 42, 42, 0.7);
-    border-radius: 5px;
-    border: 1px solid #444;
-    padding: 5px 10px;
-    color: #fff;
-    line-height: 150%;
-    font-size: small;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 20%;
+  /* float: right; */
+  /* left: 0%; */
+  right: 0;
+  left: 0;
+  margin: auto;
+  /* position: absolute; */
+  text-align: center;
+
+  background: #181818;
+  border-radius: 5px;
+  border: 1px solid #282828;
+  padding: 5px 10px;
+  color: whitesmoke;
+  line-height: 150%;
+  font-size: small;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
-.controlPane {
-    /* width: 29%; */
-    float: left;
-
-    width: 800px;
-    height: 600px;
-    margin: auto;
-    position: absolute;
-    top: 10%;
-    bottom: 0;
-    left: 0;
-    right: 42.3%;
-    /* position: absolute; */
-    display: inline-block;
-    background: rgba(42, 42, 42, 0.7);
-    border-radius: 5px;
-    border: 1px solid #444;
-    /* padding:5px 10px; */
-    color: #fff;
-    line-height: 150%;
-    text-align: center;
-    font-size: small;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+#title {
+  font-family: Sansation;
+  color: whitesmoke;
+  position: static;
+  left: 10px;
+  top: 10px;
+  margin: auto auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-#heightSliderLabel,
-#heightValue {
-    vertical-align: top;
+#title_logo {
+  /* padding-right: 20px; */
+  width: 75px;
+  filter: sepia(80%) saturate(60%) brightness(150%);
 }
 
 .titlePane a:link,
 .titlePane a:visited,
 .titlePane a:hover {
-    color: #fff;
+  color: #fff;
+}
+
+.main {
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.controlPane_1 {
+  /* width: 29%; */
+  /* float: left; */
+
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  margin-top: 0;
+  position: relative;
+  /* top: 10%; */
+  /* bottom: 0; */
+  /* left: 0; */
+  /* right: 42.3%; */
+  /* position: absolute; */
+  display: inline-block;
+  background: #181818;
+  border-radius: 5px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border: 1px solid #282828;
+  /* padding:5px 10px; */
+  color: #fff;
+  line-height: 150%;
+  text-align: center;
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  vertical-align: top;
+}
+
+.controlPane_2 {
+  /* width: 29%; */
+  /* float: left; */
+
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  margin-top: 0;
+  position: relative;
+  /* top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 42.3%; */
+  /* position: absolute; */
+  display: inline-block;
+  background: #181818;
+  border-radius: 5px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border: 1px solid #282828;
+  /* padding:5px 10px; */
+  color: #fff;
+  line-height: 150%;
+  text-align: center;
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  vertical-align: top;
+}
+
+.controlPane_2_mask {
+  /* width: 29%; */
+  /* float: left; */
+
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  margin-top: 0;
+  /* top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 42.3%; */
+  /* position: absolute; */
+  display: inline-block;
+  background: #181818;
+  border-radius: 5px;
+  border: 1px solid #282828;
+  /* padding:5px 10px; */
+  color: #fff;
+  line-height: 150%;
+  text-align: center;
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  vertical-align: top;
+}
+
+#heightSliderLabel,
+#heightValue {
+  vertical-align: top;
 }
 
 body {
-    background-color: rgb(24, 24, 24);
+  background-color: rgb(24, 24, 24);
 }
 .loadingIndicator {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -33px;
-    margin-left: -33px;
-    width: 66px;
-    height: 66px;
-    background: url(Source/Images/ajax-loader.gif) center no-repeat;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -33px;
+  margin-left: -33px;
+  width: 66px;
+  height: 66px;
+  background: url(Source/Images/ajax-loader.gif) center no-repeat;
 }
 
 /* .cover {
@@ -91,122 +172,221 @@ body {
     bottom: 0;
 } */
 
-#title {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-}
-
 .nowrap {
-    /* white-space: nowrap; */
+  /* white-space: nowrap; */
 }
 
 /* html, */
 /* body, */
 #cesiumContainer {
-    /* display: inline-block; */
-    /* float: none; */
-    width: 800px;
-    height: 600px;
-    /* makes entered on page */
-    margin: auto;
-    position: absolute;
-    top: 10%;
-    bottom: 0;
-    left: 42.3%;
-    right: 0;
-
-    border: 6px solid black;
-    border-radius: 9px;
-    padding: 0;
-    overflow: hidden;
-    font-family: sans-serif;
-    background: #000;
+  /* display: inline-block; */
+  /* float: none; */
+  width: 300px;
+  height: 300px;
+  /* makes entered on page */
+  margin: auto;
+  /* position: relative; */
+  top: 10%;
+  bottom: 0;
+  left: 42.3%;
+  right: 0;
+  display: inline-block;
+  border: 6px solid black;
+  border-radius: 9px;
+  padding: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+  background: #000;
 }
 
 button.cesium-infoBox-camera {
-    display: none;
+  display: none;
 }
 
 #3DTiles {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 #index {
-    background-color: white;
-    color: black;
-    mix-blend-mode: screen;
-    font-weight: bolder;
-    font-size: medium;
-}
-#title {
-    font-family: Sansation;
-}
-#title_logo {
-    /* padding-right: 20px; */
-    width: 75px;
-    filter: sepia(80%) saturate(60%) brightness(150%);
+  /* background-color: white; */
+  color: whitesmoke;
+  mix-blend-mode: screen;
+  font-weight: bolder;
+  font-size: medium;
 }
 
 table {
-    overflow-y: scroll;
-    height: 580px;
-    display: block;
-    width: 780px;
-    margin: 10px;
-    /* margin-top: 10px; */
-    /* display: inline-block; */
-    border: 1px solid rgb(255, 255, 255);
-    border-collapse: collapse;
-    /* padding: 10px; */
-    text-align: center;
+  overflow-y: scroll;
+  height: 580px;
+  display: block;
+  /* width: 780px; */
+  width: auto;
+  margin: 10px;
+  /* margin-top: 10px; */
+  /* display: inline-block; */
+  /* border-bottom: 1px solid #282828; */
+  border-collapse: collapse;
+  /* padding: 10px; */
+  text-align: center;
 }
 th {
-    text-align: center;
-    border: 1px solid rgb(255, 255, 255);
-    height: 30px;
+  text-align: center;
+  height: 38px;
 }
 td {
-    text-decoration: none;
-    border: 1px solid rgb(255, 255, 255);
-    padding: 9px;
-    height: 40px;
-    /* width: 100%; */
+  text-decoration: none;
+  border-bottom: 1px solid #282828;
+  padding: 9px;
+  height: 40px;
+  /* width: 100%; */
 }
 tr.selected {
-    background-color: rgb(130, 221, 25);
+  background-color: rgb(130, 221, 25);
 }
 
-#apRows:hover {
-    background-color: rgb(74, 197, 160);
-    cursor: pointer;
-}
+#apRows:hover, #flightRows:hover {
+  background-color: rgb(74, 197, 160);
+  cursor: pointer;
+} 
 
 #state_select {
-    background-color: white;
-    color: black;
-    mix-blend-mode: screen;
-    font-weight: bolder;
-    font-size: medium;
-    padding: 9px;
-    margin-bottom: 10px;
+  background-color: whitesmoke;
+  color: black;
+  mix-blend-mode: screen;
+  font-weight: bolder;
+  font-size: medium;
+  padding: 9px;
+  margin-bottom: 10px;
 }
 #text {
-    color: white;
-    mix-blend-mode: screen;
-    font-weight: bolder;
-    font-size: medium;
-    margin-left: 10px;
+  color: white;
+  mix-blend-mode: screen;
+  font-weight: bolder;
+  font-size: medium;
+  margin-left: 10px;
 }
 #choose {
-    border: 1px solid rgb(255, 255, 255);
-    font-weight: bolder;
-    font-size: medium;
-    background-color: transparent;
-    padding: 9px;
-    margin-bottom: 10px;
+  border: 1px solid whitesmoke;
+  font-weight: bolder;
+  font-size: medium;
+  background-color: transparent;
+  padding: 9px;
+  margin-bottom: 10px;
 }
 #choose:hover {
-    background-color: rgb(74, 197, 160);
-    cursor: pointer;
+  background-color: rgb(74, 197, 160);
+  cursor: pointer;
+}
+
+#outgoing_flights {
+  height: 209px;
+  /* margin-top: 10px; */
+  margin-bottom: 0px;
+}
+#outgoing_flights_header {
+  height: 38px;
+  overflow-y: hidden;
+  margin: 0px;
+  background-color: #282828;
+  color: whitesmoke;
+  padding: 0 10px;
+}
+#outgoing_flights_header_tag {
+  height: 38px;
+  overflow-y: hidden;
+  background-color: #121212;
+  color: whitesmoke;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 598px;
+  text-align: center;
+  margin: 0px;
+}
+
+#incoming_flights {
+  height: 209px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+#incoming_flights_header {
+  height: 38px;
+  overflow-y: hidden;
+  background-color: #282828;
+  color: whitesmoke;
+  
+  margin: 0px;
+  padding: 0 10px;
+}
+#incoming_flights_header_tag {
+  height: 38px;
+  overflow-y: hidden;
+  
+  background-color: #121212;
+  color: whitesmoke;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border: 1px solid #282828;
+  width: 598px;
+  text-align: center;
+
+  margin: 0px;
+}
+#airports_header_tag {
+  height: auto;
+  overflow-y: auto;
+  border-bottom: 0px;
+  /* margin-bottom: 0px; */
+  background-color: #121212;
+  color: whitesmoke;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  /* border: 1px solid #282828; */
+  border-bottom: none;
+  text-align: center;
+  width: 598px;
+  margin: 0px;
+}
+#airports_header {
+  height: auto;
+  overflow-y: auto;
+  border-top: 1px solid #282828;
+  /* margin-bottom: 0px; */
+  background-color: #282828;
+  color: whitesmoke;
+  text-align: center;
+  margin: 0px;
+
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#airports {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 0px;
+  height: 512px;
+}
+html {
+  text-align: center;
+}
+
+table::-webkit-scrollbar-track {
+  /* border: 1px solid rgb(163, 0, 0); */
+  padding: 2px 0;
+  background-color: #181818;
+  width: 14px;
+}
+
+table::-webkit-scrollbar {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 10px;
+  z-index: 0;
+
+}
+
+table::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #080808;
+  /* border: 1px solid #000; */
 }

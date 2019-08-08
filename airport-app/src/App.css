@@ -1,0 +1,408 @@
+@font-face {
+  font-family: Sansation;
+  src: url("data/fonts/Sansation_Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Sansation-light;
+  src: url("data/fonts/Sansation_Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#title_logo {
+  /* padding-right: 20px; */
+  margin-top: 10px;
+  width: 75px;
+  filter: sepia(80%) saturate(60%) brightness(150%);
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.sidebar {
+  font-family: Sansation;
+  height: 100%;
+  width: 15%;
+  background-color: #181818;
+  color: whitesmoke;
+  position: fixed;
+  /* text-align: center; */
+  box-shadow: 8px 5px 10px #000000;
+  vertical-align: middle;
+}
+.sidebar header {
+  font-family: Sansation;
+  font-size: 250%;
+  text-align: center;
+  padding: 15px 10px;
+}
+.titlePane {
+  position: absolute;
+  top: 15%;
+  margin-top: 15%;
+  width: 100%;
+  height: 30%;
+  margin: auto;
+  display: inline-block;
+  text-align: center;
+}
+.titlePane h2 {
+  width: 100%;
+  /* float: right; */
+  /* left: 0%; */
+  right: 0;
+  left: 0;
+  margin: auto;
+  /* position: absolute; */
+  text-align: center;
+
+  background: #181818;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: whitesmoke;
+  line-height: 150%;
+  font-size: x-large;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+#state_select {
+  background-color: whitesmoke;
+  color: black;
+  mix-blend-mode: screen;
+  font-weight: bolder;
+  font-size: medium;
+  padding: 9px;
+  margin-bottom: 10px;
+}
+#choose {
+  margin: auto;
+  border: 1px solid whitesmoke;
+  font-weight: bolder;
+  font-size: medium;
+  background-color: transparent;
+  padding: 9px;
+  margin-bottom: 10px;
+}
+#choose:hover {
+  background-color: rgb(74, 197, 160);
+  cursor: pointer;
+}
+.sidebar td:hover {
+  cursor: pointer;
+  background-color: rgb(0, 163, 136);
+  transition: all 0.3s;
+}
+
+.app_body {
+  display: flex;
+  flex-direction: column;
+  /* display: none; */
+  /* position: absolute; */
+  height: 100vh;
+  width: 85%;
+  margin-left: 15%;
+  background-color: #121212;
+  color: whitesmoke;
+}
+#no_selection {
+  display: flex;
+  font-family: Sansation;
+  color: #707070;
+  font-size: xx-large;
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  padding: 20% 0;
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+#airportsPane {
+  display: flex;
+  font-family: Sansation;
+  color: whitesmoke;
+  background-color: transparent;
+  /* font-size: x-large; */
+  margin: 5% auto;
+  margin-bottom: 1%;
+  width: 60%;
+  height: 30%;
+
+  /* height: auto;
+  /* padding: 20% 0;
+  align-items: center;
+  align-self: center;
+  justify-content: center; */
+}
+
+#flightsPane {
+  display: flex;
+  position: relative;
+  font-family: Sansation;
+  color: whitesmoke;
+  background-color: transparent;
+  /* font-size: x-large; */
+  margin: 5% auto;
+  margin-top: 1%;
+  width: 60%;
+  height: 30%;
+  border: 1px solid #282828;
+  border-radius: 10px;
+}
+
+.appTable {
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  background-color: #181818;
+  width: 100%;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-collapse: collapse;
+  /* border: 1px solid whitesmoke; */
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.appTable .tableSelected {
+  background-color: #38f138;
+}
+
+*::-webkit-scrollbar-track {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid #181818;
+  background-color: #181818 !important;
+  width: 14px !important;
+  z-index: 0;
+}
+
+*::-webkit-scrollbar {
+  border-top-right-radius: 10px;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+  width: 10px !important;
+  background-color: transparent;
+  z-index: 0;
+  position: relative;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+  background-color: #282828 !important;
+  /* border: 1px solid #101010; */
+  z-index: 0;
+}
+
+.appTable tbody {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.appTable thead {
+  padding: 20px;
+  background-color: #282828;
+  position: relative;
+  z-index: 100;
+}
+.appTable tbody tr:hover {
+  cursor: pointer;
+  background-color: rgb(0, 163, 136);
+  transition: all 0.3s;
+}
+
+.appTable tbody tr.selected {
+  background-color: rgb(130, 221, 25);
+  transition: all 0.3s;
+}
+
+.appTable td {
+  border: none !important;
+  border-bottom: 1px solid #282828 !important;
+}
+.appTable th {
+  text-align: center;
+  vertical-align: middle !important;
+  height: auto;
+  font-size: large;
+  border-bottom: 1px solid #282828 !important;
+  padding: 10px !important;
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  background-color: #282828;
+}
+
+.appTable tfoot {
+  font-size: small;
+  position: sticky !important;
+  text-align: center !important;
+  padding: 10px !important;
+  height: auto;
+}
+
+.appTable td {
+  text-decoration: none;
+  border-bottom: 1px solid #282828;
+  padding: 9px;
+  border: 1px solid white;
+  height: 38px;
+}
+
+.flightsPane {
+  display: flex;
+  font-family: Sansation;
+  color: #707070;
+  font-size: xx-large;
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  padding: 20% 0;
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.datePickerContainer {
+  /* padding-top: 25%; */
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+  /* border: 1px solid #282828; */
+  background-color: #282828;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+  border-right: 1px solid #282828;
+}
+.datePickerContainer ul {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  padding: 0;
+}
+.datePickerContainer li {
+  display: flexbox;
+}
+
+.datePickerContainer li:first-child {
+  vertical-align: top;
+  display: inline-block;
+  /* margin-bottom: 10%; */
+}
+
+.datePickerContainer p {
+  /* font-family: Sansation !important; */
+  font-size: large;
+  text-align: center;
+  margin: 5px;
+  margin-top: 0px;
+}
+
+.datePickerContainer #airportName_datePicker {
+  border-top-left-radius: 10px; 
+  margin: 0;
+  padding: 3% 0;
+  background-color: #181818;
+  width: 100%;
+  height: auto;
+}
+
+.datePickerContainer #flightCount {
+  text-align: center;
+  /* margin:25px; */
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
+.react-datepicker-popper[data-placement^="bottom"]
+  .react-datepicker__triangle::before {
+  border-top: none;
+  border-bottom-color: #282828 !important;
+}
+input {
+  background-color: #181818;
+  border: 1px solid #121212;
+  border-radius: 5px;
+  color: whitesmoke !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  font-weight: normal !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size: medium !important;
+  margin: 5px !important;
+  padding: 5px !important;
+  width: 200px !important;
+}
+
+html {
+  background-color: #121212;
+}
+
+#cesiumBox {
+  top: 45%;
+  margin-top: 45%;
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  margin: auto;
+}
+#cesiumContainer {
+  position: relative;
+  /* display: inline-block; */
+  /* float: none; */
+  width: 95%;
+  height: 100%;
+
+  /* makes entered on page */
+  margin: auto;
+  /* position: relative; */
+  /* top: 10%;
+  bottom: 0;
+  left: 42.3%;
+  right: 0; */
+  /* display: inline-block; */
+  border: 3px solid #080808;
+  /* border-radius: 9px; */
+  padding: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+  background: #000;
+}
+
+button.cesium-infoBox-camera {
+  display: none;
+}
+
+
