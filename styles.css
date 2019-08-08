@@ -381,12 +381,20 @@ table::-webkit-scrollbar {
   margin-left: 5px;
   margin-right: 5px;
   width: 10px;
+<<<<<<< HEAD
   z-index: 0;
+=======
+>>>>>>> master
 
 }
 
 table::-webkit-scrollbar-thumb {
   border-radius: 10px;
+<<<<<<< HEAD
   background-color: #080808;
+=======
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #282828;
+>>>>>>> master
   /* border: 1px solid #000; */
 }
