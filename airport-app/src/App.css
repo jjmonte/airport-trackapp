@@ -300,7 +300,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 80%;
+  /* width: 80%; */
+  min-width: 120%;
   border-right: 1px solid #282828;
 }
 .datePickerContainer ul {
@@ -332,7 +333,7 @@
 .datePickerContainer #airportName_datePicker {
   border-top-left-radius: 10px; 
   margin: 0;
-  padding: 3% 0;
+  padding: 3% 2%;
   background-color: #181818;
   width: 100%;
   height: auto;

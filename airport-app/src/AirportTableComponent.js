@@ -1,12 +1,27 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import { airportData } from "./scripts/db";
+import { goToLocation } from "./CesiumViewerComponent";
+import { loadFlightsPane } from "./App";
+import { setSelectedAirportName } from "./AirportViewerComponent";
 
 var airports = [];
 var selectedAirportIndex = null;
 
+function handleSelection() {
+  // calls functions that trigger upon selection of a new airport row
+  // grab airport ICAO, fly map to airport on cesium, load flights on FlightsTableComponent.js
+
+  var airport = airports[selectedAirportIndex]; // full airport object
+  goToLocation(airport); 
+  loadFlightsPane();
+  setSelectedAirportName(airport[3]);
+  // fetchFlights(airport[1]); // airport's ICAO
+}
+
 export function selectAirports(selectedState) {
-  // selectedRow = null; // clear selected airport row, to prevent issues on loading new airports
+  this.setState({ selectedAirport: null });
+  selectedAirportIndex = null; // clear selected airport row, to prevent issues on loading new airports
   airports = []; // clear the current selected state's airports, if any
 
   // if airport ICAO matches one found in the main db array, add it to new array
@@ -46,6 +61,7 @@ export class AirportTable extends React.Component {
     this.state = { airportArray: airports, selectedAirport: null };
     updateStateAirportArray = updateStateAirportArray.bind(this);
     renderAirport = renderAirport.bind(this);
+    selectAirports = selectAirports.bind(this);
   }
 
   toggleSelectedAirport(event, index) {
@@ -56,6 +72,7 @@ export class AirportTable extends React.Component {
       selectedAirportIndex = index;
       this.setState({ selectedAirport: index });
       console.log(selectedAirportIndex);
+      handleSelection();
     }
   }
 

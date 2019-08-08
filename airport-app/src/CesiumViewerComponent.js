@@ -8,7 +8,8 @@ import {
   Label,
   BillboardCollection,
   LabelCollection,
-  BillboardGraphics
+  BillboardGraphics,
+  CameraFlyTo
 } from "resium";
 import planeIcon from "./data/images/plane_circle.png";
 // import { airportData, loadAirportData } from "./scripts/db";
@@ -24,8 +25,18 @@ Cesium.Ion.defaultAccessToken =
 var airportLocations = [];
 var billboards = [];
 var labels = [];
+var cameraFlight = null;
 
-
+export function goToLocation(airport) {
+  // viewer.flyTo(airportLocations.getById(tableLocationIndex));
+  this.setState({airportSelected: true})
+  var cameraDestination = Cartesian3.fromDegrees(
+    airport[5],
+    airport[4],
+    airport[6]
+  );
+  cameraFlight = <CameraFlyTo destination={cameraDestination} />;
+}
 
 function drawAirportMap() {
   for (var i = 0; i < airportData.length - 1; ++i) {
@@ -41,12 +52,12 @@ function drawAirportMap() {
           airportData[i][6]
         )}
       >
-      <BillboardGraphics
-        key={i + "B"}
-        image={planeIcon}
-        show={true}
-        scaleByDistance={new Cesium.NearFarScalar(500, 0.1, 8.0e6, 0.005)}
-      />
+        <BillboardGraphics
+          key={i + "B"}
+          image={planeIcon}
+          show={true}
+          scaleByDistance={new Cesium.NearFarScalar(500, 0.1, 8.0e6, 0.005)}
+        />
       </Entity>
     );
 
@@ -83,7 +94,14 @@ function drawAirportMap() {
   // END FOR LOOP
 }
 
-class CesiumMap extends React.Component {
+export class CesiumMap extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { airportSelected: null };
+    goToLocation = goToLocation.bind(this);
+  }
+
   render() {
     drawAirportMap();
     return (
@@ -108,6 +126,7 @@ class CesiumMap extends React.Component {
           {airportLocations}
           {/* <BillboardCollection>{billboards}</BillboardCollection> */}
           <LabelCollection>{labels}</LabelCollection>
+          {cameraFlight}
         </Viewer>
         {/* <script src={require("./scripts/cesium_script.js")} /> */}
       </div>
@@ -115,4 +134,4 @@ class CesiumMap extends React.Component {
   }
 }
 
-export default CesiumMap;
+// export default CesiumMap;

@@ -6,7 +6,6 @@
     "@craco/craco": "^5.2.4",
     "bootstrap": "^4.3.1",
     "craco-cesium": "^1.1.1",
-    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.10",
     "react-custom-scrollbars": "^4.2.1",
@@ -14,10 +13,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-scripts": "3.0.1",
-    "react-scrollbars-custom": "^4.0.16",
-    "react-table": "^6.10.0",
-    "resium": "^1.5.0",
-    "tachyons": "^4.11.1"
+    "resium": "^1.5.0"
   },
   "scripts": {
     "start": "craco start",

@@ -11,6 +11,13 @@ maximumDate.setDate(maximumDate.getDate() - 1);
 var initialStartDate = new Date();
 initialStartDate.setDate(initialStartDate.getDate() - 2);
 
+var selectedAirportName = null;
+
+export function setSelectedAirportName(name) {
+  selectedAirportName = name;
+  this.setState({selectedAirportName: name});
+}
+
 function renderOpenSkyData(airport, index) {
   return (
     <div className="airportHeader" key={index}>
@@ -26,10 +33,12 @@ class DateTimeRangePicker extends React.Component {
     super(props);
     this.state = {
       startDate: initialStartDate,
-      endDate: maximumDate
+      endDate: maximumDate,
+      airportName: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    setSelectedAirportName = setSelectedAirportName.bind(this);
   }
 
   handleChange(date) {
@@ -47,7 +56,9 @@ class DateTimeRangePicker extends React.Component {
   render() {
     return (
       <div className="datePickerContainer">
-        <p id="airportName_datePicker">Ellison Onizuka Kona International At Keahole Airport</p>
+        <p id="airportName_datePicker">
+          {selectedAirportName}
+        </p>
         <ul style={{ listStyle: "none" }}>
           <li>
             <p>Time Frame:</p>

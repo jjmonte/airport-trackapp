@@ -5,22 +5,14 @@ import { showComponent, hideComponent } from "./gui_scripts";
 // import airports_us from "./data/airports_us.json";
 
 import { selectAirports, AirportTable } from "./AirportTableComponent";
-import CesiumMap from "./CesiumViewerComponent";
+import { CesiumMap } from "./CesiumViewerComponent";
 import AirportView from "./AirportViewerComponent";
-
-// class StateSelectButton extends React.Component {
-
-//   render() {
-//     return (
-
-//     );
-//   }
-// }
 
 class TitleStateSelect extends React.Component {
   handleClick() {
     var selectedState = this.refs.stateSelect.value;
     console.log(selectedState);
+    loadCtrlUI();
     selectAirports(selectedState);
   }
 
@@ -88,7 +80,7 @@ class TitleStateSelect extends React.Component {
           <option value="US-WI">Wisconsin</option>
           <option value="US-WY">Wyoming</option>
         </select>
-        <button id="choose" onClick={ this.handleClick.bind(this) }>
+        <button id="choose" onClick={this.handleClick.bind(this)}>
           Show Airports
         </button>
       </div>
@@ -116,19 +108,44 @@ class Sidebar extends React.Component {
   }
 }
 
+function loadCtrlUI() {
+  if (this.state.showAirportsPane === false) {
+    this.setState({ showAirportsPane: true });
+  }
+}
+
+export function loadFlightsPane() {
+  if (this.state.showFlightsPane === false) {
+    this.setState({ showFlightsPane: true });
+  }
+}
+
 class AppBody extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showAirportsPane: false, showFlightsPane: false };
+    loadCtrlUI = loadCtrlUI.bind(this);
+    loadFlightsPane = loadFlightsPane.bind(this);
+  }
+
   render() {
     return (
       <div className="app_body">
-        {/* <div id="no_selection">
+        <div id="no_selection" style={{ display: this.state.showAirportsPane ? "none" : "flex" }}>
           &#129040;
           <br />
           On the sidebar, select a state to view airports in.
-        </div> */}
-        <div id="airportsPane">
+        </div>
+        <div
+          id="airportsPane"
+          style={{ display: this.state.showAirportsPane ? "flex" : "none" }}
+        >
           <AirportTable />
         </div>
-        <div id="flightsPane">
+        <div
+          id="flightsPane"
+          style={{ display: this.state.showFlightsPane ? "flex" : "none" }}
+        >
           <AirportView />
         </div>
       </div>
