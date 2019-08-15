@@ -33,29 +33,6 @@ export function loadAirports(airportData) {
   // ng_el.populateAirports(airportData);
 };
 
-// function getAirportName(ICAO_airport) {
-//   for (var i = 0; i < airportData.length; i++) {
-//     if (airportData[i][12] === ICAO_airport) {
-//       return airportData[i][3];
-//     }
-//   }
-// };
-
-// function getAirportICAO(airport_name) {
-//   for (var i = 0; i < airportData.length; i++) {
-//     if (airportData[i][3] === airport_name) {
-//       return airportData[i][12];
-//     }
-//   }
-// };
-
-// function getAirportState(ICAO_airport) {
-//   for (var i = 0; i < airportData.length; i++) {
-//     if (airportData[i][12] === ICAO_airport) {
-//       return airportData[i][9];
-//     }
-//   }
-// };
 
 // PARSES PROPERLY
 export function JSONToArray(airportData, jsonObject) {

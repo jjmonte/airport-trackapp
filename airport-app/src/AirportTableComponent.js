@@ -4,9 +4,10 @@ import { airportData } from "./scripts/db";
 import { goToLocation } from "./CesiumViewerComponent";
 import { loadFlightsPane } from "./App";
 import { setSelectedAirportName } from "./AirportViewerComponent";
+// import { fetchFlights } from "./FlightsTableComponent";
 
-var airports = [];
-var selectedAirportIndex = null;
+export var airports = [];
+export var selectedAirportIndex = null;
 
 function handleSelection() {
   // calls functions that trigger upon selection of a new airport row

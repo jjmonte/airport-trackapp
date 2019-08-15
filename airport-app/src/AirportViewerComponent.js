@@ -4,6 +4,8 @@ import { Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "./datepicker-custom.css";
 import { airportData } from "./scripts/db";
+import { FlightsTable, flightCount, fetchFlights } from "./FlightsTableComponent";
+import { airports, selectedAirportIndex } from "./AirportTableComponent";
 
 var maximumDate = new Date();
 maximumDate.setDate(maximumDate.getDate() - 1);
@@ -15,7 +17,10 @@ var selectedAirportName = null;
 
 export function setSelectedAirportName(name) {
   selectedAirportName = name;
-  this.setState({selectedAirportName: name});
+  this.setState({ selectedAirportName: name });
+}
+export function updateFlightCount() {
+  this.setState({ importedFlightCount: flightCount});
 }
 
 function renderOpenSkyData(airport, index) {
@@ -28,37 +33,54 @@ function renderOpenSkyData(airport, index) {
   );
 }
 
+// function formatThousands(number) {
+//     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+// }
+
 class DateTimeRangePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       startDate: initialStartDate,
       endDate: maximumDate,
-      airportName: null
+      airportName: null,
+      importedFlightCount: flightCount
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeEnd = this.handleChangeEnd.bind(this);
+    this.handleChangeStart = this.handleChangeStart.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     setSelectedAirportName = setSelectedAirportName.bind(this);
+    updateFlightCount = updateFlightCount.bind(this);
   }
 
-  handleChange(date) {
-    this.setState({
-      startDate: date
-    });
+  handleChangeStart(date) {
+    this.setState({startDate: date})
   }
+
+  handleChangeEnd(date) {
+    this.setState({endDate: date});
+  }
+
+  // handleChange(date) {
+  //   this.setState({
+  //     startDate: date
+  //   });
+  // }
+
+
 
   handleSubmit(e) {
     e.preventDefault();
-    let main = this.state.startDate;
-    console.log(main.format("L"));
+    // let main = this.state.startDate;
+    console.log(this.state.startDate / 1000);
+    fetchFlights(airports[selectedAirportIndex][1], this.state.startDate, this.state.endDate);
+    // console.log(main.format("L"));
   }
 
   render() {
     return (
       <div className="datePickerContainer">
-        <p id="airportName_datePicker">
-          {selectedAirportName}
-        </p>
+        <p id="airportName_datePicker">{selectedAirportName}</p>
         <ul style={{ listStyle: "none" }}>
           <li>
             <p>Time Frame:</p>
@@ -105,13 +127,35 @@ class DateTimeRangePicker extends React.Component {
               timeIntervals={60}
             />
           </li>
+          <button style={{ marginTop: "2%" }} id="choose" onClick={this.handleSubmit}>Submit</button>
         </ul>
 
-        <span id="flightCount">Showing 62 Flights</span>
+        <span id="flightCount">Showing { flightCount.toLocaleString() } Flights</span>
       </div>
     );
   }
 }
+
+// class FlightsTable extends React.Component {
+//   render() {
+//     return (
+//       <div className="appTable">
+//         <Table>
+//           <thead>
+//             <tr>
+//               <th style={{ borderTopLeftRadius: "10px" }}>ICAO</th>
+//               <th>City</th>
+//               <th>Name</th>
+//               <th>Size</th>
+//             </tr>
+//           </thead>
+
+//           <tbody>{this.state.airportArray.map(renderAirport)}</tbody>
+//         </Table>
+//       </div>
+//     )
+//   }
+// }
 
 class AirportView extends React.Component {
   render() {
@@ -119,6 +163,7 @@ class AirportView extends React.Component {
     return (
       <div className="airportView">
         <DateTimeRangePicker />
+        <FlightsTable />
       </div>
     );
   }

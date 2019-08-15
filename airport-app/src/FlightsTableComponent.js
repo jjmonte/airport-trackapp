@@ -1,18 +1,26 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-import { airportData } from "./scripts/db";
+import {
+  airportData,
+  getAirportICAO,
+  getAirportName,
+  getAirportState
+} from "./scripts/db";
 import DatePicker from "react-datepicker";
 import "./datepicker-custom.css";
+import { updateFlightCount } from "./AirportViewerComponent";
 
 var arrivingFlights = [];
 var departingFlights = [];
 
-var flightCount = 0;
+export var flightCount = 0;
 
-var selectedAirportICAO;
+// export function getFlightCount() {
+//   return flightCount;
+// }
 
-function fetchFlights(selectedAirportICAO) {
+export function fetchFlights(airportICAO, startDate, endDate) {
   var xhr = requestHelper(airportICAO, "api");
   xhr.onload = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -20,7 +28,7 @@ function fetchFlights(selectedAirportICAO) {
 
       // Request for Departing Flights
 
-      departuresRequest = requestHelper(airportICAO, "departures");
+      var departuresRequest = requestHelper(airportICAO, "departures", startDate, endDate);
       departuresRequest.onload = function() {
         if (
           departuresRequest.readyState === 4 &&
@@ -29,7 +37,7 @@ function fetchFlights(selectedAirportICAO) {
           var type = departuresRequest.getResponseHeader("Content-Type");
           if (type.indexOf("text") !== 1) {
             // console.log(departuresRequest.responseText);
-            departures = JSON.parse(this.response);
+            var departures = JSON.parse(this.response);
             departingFlights = [];
             for (var i = 0; i < departures.length; i++) {
               var departedTime = dateFormat(
@@ -42,17 +50,19 @@ function fetchFlights(selectedAirportICAO) {
               var destinationF = getAirportName(
                 departures[i].estArrivalAirport
               );
-              if (!csignF) {
-                csignF = "unknown";
+              var airportRegion = getAirportState(departures[i].estArrivalAirport);
+              if (!callsignF) {
+                callsignF = "unknown";
               }
-              if (!destF) {
-                destF = "unknown";
+              if (!destinationF) {
+                destinationF = "unknown";
               }
               var fRow = {
-                callsign: csignF,
-                destination: destF,
+                callsign: callsignF,
+                destination: destinationF,
                 departTime: departedTime,
-                arriveTime: arrivedTime
+                arriveTime: arrivedTime,
+                destinationRegion: airportRegion
               };
               departingFlights.push(fRow);
               flightCount++;
@@ -65,7 +75,7 @@ function fetchFlights(selectedAirportICAO) {
       };
       departuresRequest.send();
 
-      var tool = (arrivalsRequest = requestHelper(airportICAO, "arrivals"));
+      var arrivalsRequest = requestHelper(airportICAO, "arrivals", startDate, endDate);
       arrivalsRequest.onload = function() {
         // var data = JSON.parse(this.response);
         if (
@@ -75,8 +85,8 @@ function fetchFlights(selectedAirportICAO) {
           var type = arrivalsRequest.getResponseHeader("Content-Type");
           if (type.indexOf("text") !== 1) {
             // console.log(request.responseText);
-            arrivals = JSON.parse(this.response);
-            arrivalFlights = [];
+            var arrivals = JSON.parse(this.response);
+            arrivingFlights = [];
             for (var i = 0; i < arrivals.length; i++) {
               var departedTime = dateFormat(
                 new Date(arrivals[i].firstSeen * 1000)
@@ -86,6 +96,7 @@ function fetchFlights(selectedAirportICAO) {
               );
               var csignF = arrivals[i].callsign;
               var originF = getAirportName(arrivals[i].estDepartureAirport);
+              var airportRegion = getAirportState(arrivals[i].estDepartureAirport);
               if (!csignF) {
                 csignF = "unknown";
               }
@@ -96,14 +107,15 @@ function fetchFlights(selectedAirportICAO) {
                 callsign: csignF,
                 origin: originF,
                 departTime: departedTime,
-                arriveTime: arrivedTime
+                arriveTime: arrivedTime,
+                originRegion: airportRegion
               };
-              arrivalFlights.push(fRow);
+              arrivingFlights.push(fRow);
               flightCount++;
               //apply changes to gui?
             }
             console.log("Arrivals loaded.");
-            updateStateArrivals(arrivalFlights);
+            updateStateArrivals(arrivingFlights);
           }
         }
       };
@@ -113,16 +125,16 @@ function fetchFlights(selectedAirportICAO) {
   xhr.send();
 }
 
-function requestHelper(airportICAO, reqType) {
+function requestHelper(airportICAO, reqType, startDate, endDate) {
   console.log(airportICAO);
   var xhr;
 
-  var d = new Date();
-  var startOfDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  // var d = new Date();
+  // var startOfDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
   // var unixStartTime = Math.floor(Date.now() / 1000) - 7200; // t - 2 hours
-  var unixStartTime = startOfDay / 1000 - 86400; //86400 sec in day
+  var unixStartTime = startDate / 1000; //86400 sec in day
   // var unixEndTime = Math.floor(Date.now() / 1000); // t
-  var unixEndTime = startOfDay / 1000;
+  var unixEndTime = endDate / 1000;
   // time span is 2nd half of yesterday
 
   if (reqType === "arrivals") {
@@ -162,30 +174,61 @@ function requestHelper(airportICAO, reqType) {
   }
 }
 
+function dateFormat(dateObject) {
+  var dateString =
+    dateObject.getUTCFullYear() +
+    "/" +
+    ("0" + (dateObject.getUTCMonth() + 1)).slice(-2) +
+    "/" +
+    ("0" + dateObject.getUTCDate()).slice(-2) +
+    " @ " +
+    ("0" + dateObject.getUTCHours()).slice(-2) +
+    ":" +
+    ("0" + dateObject.getUTCMinutes()).slice(-2);
+
+  return dateString;
+}
+
 function updateStateArrivals(arrayArriving) {
   this.setState({ arrayArriving });
+  updateFlightCount();
 }
 
 function updateStateDepartures(arrayDeparting) {
   this.setState({ arrayDeparting });
+  updateFlightCount();
 }
 
-function renderFlight(flight, index) {
+function renderArrivingFlight(flight, index) {
   // flightArray is either departing or arriving
   return (
     <tr className="flightRow" key={index}>
-      <td>{flight[0]}</td>
-      <td>{flight[1]}</td>
-      <td>{flight[3]}</td>
-      <td>{flight[4]}</td>
+      <td>{flight.callsign}</td>
+      <td title={flight.originRegion}>{flight.origin}</td>
+      <td>{flight.departTime}</td>
+      <td>{flight.arriveTime}</td>
     </tr>
   );
 }
 
-class FlightsTable extends React.Component {
+function renderDepartingFlight(flight, index) {
+  return (
+    <tr className="flightRow" key={index}>
+      <td>{flight.callsign}</td>
+      <td title={flight.destinationRegion}>{flight.destination}</td>
+      <td>{flight.departTime}</td>
+      <td>{flight.arriveTime}</td>
+    </tr>
+  );
+}
+
+export class FlightsTable extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { arrayDeparting: departures, arrayArriving: arrivals };
+    this.state = {
+      arrayDeparting: departingFlights,
+      arrayArriving: arrivingFlights
+    };
     updateStateArrivals = updateStateArrivals.bind(this);
     updateStateDepartures = updateStateDepartures.bind(this);
   }
@@ -204,7 +247,7 @@ class FlightsTable extends React.Component {
               </tr>
             </thead>
 
-            <tbody>{arrivingFlights.map(renderFlight)}</tbody>
+            <tbody>{arrivingFlights.map(renderArrivingFlight)}</tbody>
           </Table>
         </div>
         <div className="appTable" id="departingFlightsTable">
@@ -218,7 +261,7 @@ class FlightsTable extends React.Component {
               </tr>
             </thead>
 
-            <tbody>{departingFlights.map(renderFlight)}</tbody>
+            <tbody>{departingFlights.map(renderDepartingFlight)}</tbody>
           </Table>
         </div>
       </div>

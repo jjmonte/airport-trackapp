@@ -102,7 +102,7 @@
   border: 1px solid whitesmoke;
   font-weight: bolder;
   font-size: medium;
-  background-color: transparent;
+  background-color: #181818;
   padding: 9px;
   margin-bottom: 10px;
 }
@@ -170,7 +170,7 @@
   margin: 5% auto;
   margin-top: 1%;
   width: 60%;
-  height: 30%;
+  height: 50%;
   border: 1px solid #282828;
   border-radius: 10px;
 }
@@ -179,7 +179,7 @@
   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
   background-color: #181818;
   width: 100%;
-  border-top-left-radius: 10px !important;
+  border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -289,6 +289,9 @@
   justify-content: center;
 }
 
+.airportView {
+  width: 100%;
+}
 .datePickerContainer {
   /* padding-top: 25%; */
   border-top-left-radius: 9px;
@@ -296,13 +299,13 @@
   /* border: 1px solid #282828; */
   background-color: #282828;
   height: 100%;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  /* width: 80%; */
-  min-width: 120%;
-  border-right: 1px solid #282828;
+  width: 25%;
+  /* min-width: 120%; */
+  border-right: 1px solid #121212;
 }
 .datePickerContainer ul {
   justify-content: center;
@@ -331,7 +334,7 @@
 }
 
 .datePickerContainer #airportName_datePicker {
-  border-top-left-radius: 10px; 
+  border-top-left-radius: 10px;
   margin: 0;
   padding: 3% 2%;
   background-color: #181818;
@@ -365,6 +368,29 @@ input {
   margin: 5px !important;
   padding: 5px !important;
   width: 200px !important;
+}
+
+#flightsTableContainer {
+  width: 75%;
+  height: 100%;
+  /* background-color: #38f138; */
+  display: inline-block;
+  position: absolute;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  /* display: inline-flex; */
+}
+#arrivingFlightsTable {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  height: 50%;
+  display: flex;
+}
+#departingFlightsTable {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  height: 50%;
+  display: flex;
 }
 
 html {
@@ -405,5 +431,3 @@ html {
 button.cesium-infoBox-camera {
   display: none;
 }
-
-
